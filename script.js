@@ -5,11 +5,9 @@ var obj = {
 
     data: null,
 
-    init: function(config) {
+    init: function() {
 
-        var config = _.assign( config, {
-            "test": true
-        });
+        var config = require('./config/config.json');
 
         xj({
             input: "config/site.xls",  // input xls
@@ -23,7 +21,8 @@ var obj = {
 
                 _.forEach(result, function(data, key) {
 
-                    console.log(data["Supplier Name"], data["Description"]);
+
+                    console.log(data[config.fieldName[0]], data[config.fieldName[1]]);
                 });
             }
 
@@ -32,4 +31,4 @@ var obj = {
     }
 };
 
-obj.init({});
+obj.init();
