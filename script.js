@@ -32,6 +32,4 @@ var obj = {
     }
 };
 
-//curl -d "" -X POST http://trainingarrow.cloudapp.net/-/item/v1/sitecore/Content/Home/Arrow%20Training?name=TestItem&template=Sample/SampleItem&sc_database=master
-
 obj.init({});
