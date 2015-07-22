@@ -40,3 +40,4 @@ var obj = {
 };
 
 obj.init( {} );
+
