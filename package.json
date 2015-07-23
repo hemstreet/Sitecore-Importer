@@ -8,6 +8,8 @@
   "dependencies": {
     "lodash": "latest",
     "xls-to-json": "latest",
-    "curlrequest": "latest"
+    "curlrequest": "latest",
+    "http-post": "latest"
   }
 }
+git gu
