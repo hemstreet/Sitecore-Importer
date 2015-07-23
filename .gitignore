@@ -1,3 +1,4 @@
 .idea/*
 config/*.json
 output/*.json
+output/*.md
