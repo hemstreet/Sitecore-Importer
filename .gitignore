@@ -1,4 +1,5 @@
 .idea/*
 config/*.json
 output/*.json
-output/*.md
+
+url http://arrow:Arrow2015@trainingarrow.cloudapp.net
