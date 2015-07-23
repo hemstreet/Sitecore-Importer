@@ -1,4 +1,6 @@
 .idea/*
-config/*.json
+config/*
 output/*
+
+!config/.keep
 !output/.keep
