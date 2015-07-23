@@ -18,13 +18,14 @@ var obj = {
 
         this.config = _.assign( config || {}, _config );
 
-        //{F1D3C2D3-43DF-4A14-B282-D51367207538}
         //this.readItem('F1D3C2D3-43DF-4A14-B282-D51367207538');
 
-        this.createItem({
-            'template' : obj.config.templateId,
-            'name' : 'Test Template'
-        });
+        this.query('/sitecore/content/*');
+
+        //this.createItem({
+        //    'template' : obj.config.templateId,
+        //    'name' : 'Test Template'
+        //});
 
         xj( {
             input : "config/site.xls",  // input xls
@@ -71,7 +72,7 @@ var obj = {
         //});
 
         this.post({
-            'url' : '/-/item/v1/' + obj.config.path,
+            'url' : obj.config.path,
             'data' : {
                 'name' : data.name,
                 'template' : obj.config.templateId
@@ -83,17 +84,31 @@ var obj = {
         //this.request({});
 
     },
+    /**
+     * Retrieve item by id, can be any type of item ( page, media, etc...)
+     * @param id
+     */
     readItem : function (id) {
 
         this.request({
-            'url' : '/-/item/v1/?sc_itemid={' + id + '}'
+            'url' : '?sc_itemid={' + id + '}'
         });
 
     },
     updateItem : function () {
 
     },
+    query: function(path) {
+        this.request({
+            'url' : '?query=fast:' + path
+        });
+    },
+
     post: function(options) {
+
+        // Fields can be updated from field name or by field id
+
+
 
         var url = encodeURI(obj.config.baseUrl + options.url);
 
