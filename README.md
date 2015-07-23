@@ -18,12 +18,14 @@ Inserting Main images into articles
 ====
 insert file path into main image field
 ```/Images/Social/Connector/Facebook```
+
 Base Path 
 ```/{image name}```
 
-
 Reading items by id
-this.readItem('123-345-6789-101112');
+===
+```this.readItem('{123-345-6789-101112}');```
 
-Query
-this.query('/sitecore/content/*');
+Query support
+===
+```this.query('/sitecore/content/*');```

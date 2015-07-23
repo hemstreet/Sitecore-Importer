@@ -10,6 +10,7 @@
     "xls-to-json": "latest",
     "curlrequest": "latest",
     "http-post": "latest",
-    "unirest" : "latest"
+    "unirest" : "latest",
+    "query-string" : "latest"
   }
 }
