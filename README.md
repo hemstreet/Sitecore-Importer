@@ -20,4 +20,3 @@ insert file path into main image field
 ```/Images/Social/Connector/Facebook```
 Base Path 
 ```/{image name}```
-
