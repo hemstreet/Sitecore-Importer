@@ -1,5 +1,4 @@
 .idea/*
 config/*.json
-output/*.json
-
-url http://arrow:Arrow2015@trainingarrow.cloudapp.net
+output/*
+!output/.keep
