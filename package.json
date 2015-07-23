@@ -9,6 +9,6 @@
     "lodash": "latest",
     "xls-to-json": "latest",
     "curlrequest": "latest",
-    "docxtemplater": "latest"
+    "http-post": "latest"
   }
 }
