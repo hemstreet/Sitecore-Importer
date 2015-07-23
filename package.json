@@ -9,7 +9,7 @@
     "lodash": "latest",
     "xls-to-json": "latest",
     "curlrequest": "latest",
-    "http-post": "latest"
+    "http-post": "latest",
+    "unirest" : "latest"
   }
 }
-git gu

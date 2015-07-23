@@ -5,6 +5,8 @@ var _    = require( 'lodash' ),
 var http = require('http');
 http.post = require('http-post');
 
+var unirest = require('unirest');
+
 var obj = {
 
     data : null,
@@ -17,9 +19,13 @@ var obj = {
         this.config = _.assign( config || {}, _config );
 
         //{F1D3C2D3-43DF-4A14-B282-D51367207538}
-        this.readItem('F1D3C2D3-43DF-4A14-B282-D51367207538');
+        //this.readItem('F1D3C2D3-43DF-4A14-B282-D51367207538');
 
-        //
+        this.createItem({
+            'template' : obj.config.templateId,
+            'name' : 'Test Template'
+        });
+
         xj( {
             input : "config/site.xls",  // input xls
             output : "output/site.json", // output json
@@ -52,12 +58,24 @@ var obj = {
     createItem : function ( data ) {
 
         //console.log( data );
+        //'template' : 'F1D3C2D3-43DF-4A14-B282-D51367207538',
+        //    'name' : 'Test Template'
+        //
+        //data.template,
+
 
         //'url' : '/-/item/v1/' + this.config.path + '?name=' + data["Supplier Name"] + '&template=' + this.config.templatePath + '&sc_database=master'
 
+        //this.post({
+        //    'url' : '/-/item/v1/' + obj.config.path + '?name=' + data.name + '&template=' + obj.config.templateId,
+        //});
 
         this.post({
-            'url' : '/-/item/v1/' + obj.config.path + '?name=' + data["Supplier Name"] + '&template=' + obj.config.templatePath
+            'url' : '/-/item/v1/' + obj.config.path,
+            'data' : {
+                'name' : data.name,
+                'template' : obj.config.templateId
+            }
         });
 
         //http://<host_name>
@@ -66,6 +84,7 @@ var obj = {
 
     },
     readItem : function (id) {
+
         this.request({
             'url' : '/-/item/v1/?sc_itemid={' + id + '}'
         });
@@ -78,21 +97,56 @@ var obj = {
 
         var url = encodeURI(obj.config.baseUrl + options.url);
 
-
-        console.log(url);
-
+        //console.log(url);
+        //
         //http.post(url, {
         //
         //}, function(res){
-        //    //response.setEncoding('utf8');
+        //    response.setEncoding('utf8');
         //    res.on('data', function(chunk) {
         //        console.log(chunk);
         //    });
         //});
+
+        unirest.post(url)
+            .header('Content-Type', 'application/x-www-form-urlencoded')
+            .send(options.data)
+            .end(function (response) {
+                console.log(response.body);
+            });
+
+
+        //var post_data = querystring.stringify(options.data);
+        //
+        //var post_options = {
+        //    host: obj.config.baseUrl,
+        //    port: '80',
+        //    path: options.url,
+        //    method: 'POST',
+        //    headers: {
+        //        'Content-Type': 'application/x-www-form-urlencoded',
+        //        'Content-Length': post_data.length
+        //    }
+        //};
+        //
+        //// Set up the request
+        //var post_req = http.request(post_options, function(res) {
+        //    res.setEncoding('utf8');
+        //    res.on('data', function (chunk) {
+        //        console.log('Response: ' + chunk);
+        //    });
+        //});
+        //
+        //// post the data
+        //post_req.write(post_data);
+        //post_req.end();
+
     },
     request : function ( options ) {
 
         var url = encodeURI(obj.config.baseUrl + options.url);
+
+        console.log(url);
 
         curl.request( {
             url : url
