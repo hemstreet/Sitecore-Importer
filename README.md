@@ -3,7 +3,7 @@
 How to run
 ===
 
-To start the script run: node script.js
+To start the script run: `node script.js`
 
 Setup
 ==
@@ -55,7 +55,7 @@ New Content ( v1 )
 * Zip contains images named like "{name of image}.jpg" like "Event One.jpg"
 * After all images are uploaded, upload articles from csv, 
     * match main image to field in csv for main image location
-    * serach description for {image name} without extension, swap out that string for "<img height="{image-y}" width="{image-x}" alt="{Name of Image}" src="~/media/{ID-Of-Image}.ashx" />"
+    * serach description for {image name} without extension, swap out that string for `<img height="{image-y}" width="{image-x}" alt="{Name of Image}" src="~/media/{ID-Of-Image}.ashx" />`
     
 Updating Content ( v2 )
 * upload CSV
