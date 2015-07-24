@@ -44,3 +44,24 @@ Query support
 ```
 this.query('/sitecore/content/*');
 ```
+
+Story
+===
+
+New Content ( v1 )
+
+* Upload zip of images e.g. (2015.zip)
+* config has base media folder to upload into ( pops off zip name and creates or upserts images for 2015.zip it would be , /media/events/2015/* )
+* Zip contains images named like "{name of image}.jpg" like "Event One.jpg"
+* After all images are uploaded, upload articles from csv, 
+    * match main image to field in csv for main image location
+    * serach description for {image name} without extension, swap out that string for "<img height="{image-y}" width="{image-x}" alt="{Name of Image}" src="~/media/{ID-Of-Image}.ashx" />"
+    
+Updating Content ( v2 )
+* upload CSV
+    * match title of article to post
+    * Use that matched Id to get fields
+    * swap out content with new content
+
+
+    
