@@ -11,6 +11,7 @@
     "curlrequest": "latest",
     "http-post": "latest",
     "unirest" : "latest",
-    "query-string" : "latest"
+    "query-string" : "latest",
+    "node-image-resize" : "latest"
   }
 }

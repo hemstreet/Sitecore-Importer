@@ -25,13 +25,13 @@ var obj = {
         // Web Template
         //this.readItem( '{AB86861A-6030-46C5-B394-E8F99E8B87DB}' );
 
-        this.query('/sitecore/Content/Hemstreet');
+        //this.query('/sitecore/Content/Hemstreet/*');
         //this.query('/sitecore/content/Home/Products/Manufacturers/0 to 9/3M');
 
-        //this.createItem({
-        //    'template' : obj.config.templateId,
-        //    'name' : 'Test Item'
-        //});
+        this.createItem({
+            'template' : this.config.templateId,
+            'name' : 'Test Item'
+        });
 
         //xj({
         //    input: "config/site.xls",  // input xls
@@ -76,11 +76,15 @@ var obj = {
         //    'url' : '/-/item/v1/' + obj.config.path + '?name=' + data.name + '&template=' + obj.config.templateId,
         //});
 
+
+        console.log(data, data.database || 'master');
+
         this.post({
-            'url': obj.config.path,
+            'url': this.config.path,
             'data': {
                 'name': data.name,
-                'template': obj.config.templateId
+                'template': data.templateId,
+                'Database' : data.database || 'master'
             }
         });
 
@@ -131,8 +135,6 @@ var obj = {
 
         ///item/v1/sitecore/Content/Home?name=MyItem&template=Sample/SampleItem
 
-
-        //qa.beta.arrow.com/-/item/v1/sitecore/content/Hemstreet?name=Test%20Item&template=%7BAB86861A-6030-46C5-B394-E8F99E8B87DB%7D
         unirest.post(url)
             .header('Content-Type', 'application/x-www-form-urlencoded')
             .send(options.data)
@@ -178,12 +180,13 @@ var obj = {
     },
     request: function (options) {
 
-        var url = encodeURI(obj.config.baseUrl + options.url);
+        var url = encodeURI(this.config.baseUrl + options.url);
 
         console.log(url);
 
         curl.request({
-            url: url
+            url: url,
+            headers: this.config.headers
         }, function (err, data, meta) {
             if (err) {
                 console.log('Error:', err);
