@@ -12,6 +12,7 @@
     "http-post": "latest",
     "unirest" : "latest",
     "query-string" : "latest",
-    "node-image-resize" : "latest"
+    "node-image-resize" : "latest",
+    "requestify" : "latest"
   }
 }

@@ -1,12 +1,6 @@
 var _ = require('lodash'),
     xj = require("xls-to-json"),
-    curl = require('curlrequest'),
-    queryString = require('query-string');
-
-var http = require('http');
-http.post = require('http-post');
-
-var unirest = require('unirest');
+    requestify = require('requestify');
 
 var obj = {
 
@@ -29,8 +23,11 @@ var obj = {
         //this.query('/sitecore/content/Home/Products/Manufacturers/0 to 9/3M');
 
         this.createItem({
-            'template' : this.config.templateId,
-            'name' : 'Test Item'
+            'name' : 'Script imported item',
+            'body' : {
+                'title' : 'Test Item',
+                'description' : 'Test importing an article'
+            }
         });
 
         //xj({
@@ -64,33 +61,15 @@ var obj = {
     },
     createItem: function (data) {
 
-        //console.log( data );
-        //'template' : 'F1D3C2D3-43DF-4A14-B282-D51367207538',
-        //    'name' : 'Test Template'
-        //
-        //data.template,
-
-        //'url' : '/-/item/v1/' + this.config.path + '?name=' + data["Supplier Name"] + '&template=' + this.config.templatePath + '&sc_database=master'
-
-        //this.post({
-        //    'url' : '/-/item/v1/' + obj.config.path + '?name=' + data.name + '&template=' + obj.config.templateId,
-        //});
-
-
-        console.log(data, data.database || 'master');
+        var name = data.name || 'No Name',
+            database = data.database || 'master',
+            sc_itemid = data.sc_itemid || this.config.sc_itemid,
+            template = data.template || this.config.template;
 
         this.post({
-            'url': this.config.path,
-            'data': {
-                'name': data.name,
-                'template': data.templateId,
-                'Database' : data.database || 'master'
-            }
+            'url': this.config.baseUrl + '?name=' + name + '&sc_itemid=' + sc_itemid + '&template=' + template + '&sc_database=' + database,
+            'body': data.body
         });
-
-        //http://<host_name>
-
-        //this.request({});
 
     },
     /**
@@ -117,87 +96,36 @@ var obj = {
 
     post: function (options) {
 
-        // Fields can be updated from field name or by field id
-        var base = encodeURI(obj.config.baseUrl + options.url),
-            query = queryString.stringify(options.data),
-            url = 'http://' + base + '?' + query;
+        requestify.request(options.url, {
+            method: 'POST',
+            headers: this.config.headers,
+            body: options.body,
+        }).then(function(response) {
 
-        console.log(url);
+            console.log(response);
+            var data = response.getBody().result;
 
-        //http.post(url, {
-        //
-        //}, function(res){
-        //    response.setEncoding('utf8');
-        //    res.on('data', function(chunk) {
-        //        console.log(chunk);
-        //    });
-        //});
+            console.log(data);
 
-        ///item/v1/sitecore/Content/Home?name=MyItem&template=Sample/SampleItem
-
-        unirest.post(url)
-            .header('Content-Type', 'application/x-www-form-urlencoded')
-            .send(options.data)
-            .end(function (response) {
-                console.log(response.body);
-            });
-
-
-                // For media
-                //"name={0}&sc_itemid={1}&sc_database={2}&payload=content"
-                //    , HttpUtility.UrlEncode(itemName)
-                //    , HttpUtility.UrlEncode(parentId.ToString())
-                //    , HttpUtility.UrlEncode(databaseName));
-                    // and
-                // http://sitecorejunkie.com/2013/07/17/set-new-media-library-item-fields-via-the-sitecore-item-web-api/comment-page-1/#comment-12483
-                // https://sitecorejunkie.files.wordpress.com/2013/07/create-media-console-2.png
-
-        //
-        //var post_data = queryString.stringify( options.data );
-        //
-        //var post_options = {
-        //    host : 'http://' + obj.config.baseUrl,
-        //    path : options.url,
-        //    method : 'POST',
-        //    headers : {
-        //        'Content-Type' : 'application/x-www-form-urlencoded',
-        //        'Content-Length' : post_data.length
-        //    }
-        //};
-        //
-        //// Set up the request
-        //var post_req = http.request( post_options, function ( res ) {
-        //    res.setEncoding( 'utf8' );
-        //    res.on( 'data', function ( chunk ) {
-        //        console.log( 'Response: ' + chunk );
-        //    } );
-        //} );
-        //
-        //// post the data
-        //post_req.write( post_data );
-        //post_req.end();
+        });
 
     },
     request: function (options) {
 
         var url = encodeURI(this.config.baseUrl + options.url);
 
-        console.log(url);
-
-        curl.request({
-            url: url,
+        requestify.get(url, {
             headers: this.config.headers
-        }, function (err, data, meta) {
-            if (err) {
-                console.log('Error:', err);
-                return;
-            }
+        }).then(function(response) {
 
-            var json = JSON.parse(data).result;
+            var data = response.getBody().result;
 
-            console.log(json);
+            console.log(data)
 
         });
+    },
+    createFolder: function() {
+
     }
 };
 
