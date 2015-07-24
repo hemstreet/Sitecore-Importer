@@ -29,3 +29,11 @@ Reading items by id
 Query support
 ===
 ```this.query('/sitecore/content/*');```
+
+Run tests
+===
+Install mocha
+`npm install -g mocha`
+
+run tests
+`mocha`
