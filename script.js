@@ -1,64 +1,68 @@
-var _    = require( 'lodash' ),
-    xj   = require( "xls-to-json" ),
-    curl = require( 'curlrequest' ),
+var _ = require('lodash'),
+    xj = require("xls-to-json"),
+    curl = require('curlrequest'),
     queryString = require('query-string');
 
-var http = require( 'http' );
-http.post = require( 'http-post' );
+var http = require('http');
+http.post = require('http-post');
 
-var unirest = require( 'unirest' );
+var unirest = require('unirest');
 
 var obj = {
 
-    data : null,
-    config : null,
+    data: null,
+    config: null,
 
-    init : function ( config ) {
+    init: function (config) {
 
-        var _config = require( './config/config.json' );
+        var _config = require('./config/config.json');
 
-        this.config = _.assign( config || {}, _config );
+        this.config = _.assign(config || {}, _config);
 
+        // Home directory
+        //this.readItem( '{110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9}' );
+
+        // Web Template
         //this.readItem( '{AB86861A-6030-46C5-B394-E8F99E8B87DB}' );
 
-        //this.query('/sitecore/content/*');
+        this.query('/sitecore/Content/Hemstreet');
         //this.query('/sitecore/content/Home/Products/Manufacturers/0 to 9/3M');
 
-        this.createItem({
-            'template' : obj.config.templateId,
-            'name' : 'Test Item'
-        });
+        //this.createItem({
+        //    'template' : obj.config.templateId,
+        //    'name' : 'Test Item'
+        //});
 
-        xj({
-            input : "config/site.xls",  // input xls
-            output : "output/site.json", // output json
-            sheet : "Manufacture Pages"  // specific sheetname
-        }, function ( err, result ) {
-
-            if ( err ) {
-                console.error( err );
-            } else {
-
-                //this.createItem(result[0]);
-
-                //_.forEach( result, function ( data, key ) {
-                //
-                //    //console.log( this.config.fieldNames );
-                //
-                //    setTimeout( function () {
-                //        //curl.request({ url: 'http://google.com', pretend: true }, function (err, stdout, meta) {
-                //        //    console.log('%s %s', meta.cmd, meta.args.join(' '));
-                //        //});
-                //        this.createItem( data );
-                //    }.bind( this ), key * this.config.delayBetweenRequests )
-                //
-                //}.bind( this ) );
-            }
-
-        }.bind( this ) );
+        //xj({
+        //    input: "config/site.xls",  // input xls
+        //    output: "output/site.json", // output json
+        //    sheet: "Manufacture Pages"  // specific sheetname
+        //}, function (err, result) {
+        //
+        //    if (err) {
+        //        console.error(err);
+        //    } else {
+        //
+        //        //this.createItem(result[0]);
+        //
+        //        //_.forEach( result, function ( data, key ) {
+        //        //
+        //        //    //console.log( this.config.fieldNames );
+        //        //
+        //        //    setTimeout( function () {
+        //        //        //curl.request({ url: 'http://google.com', pretend: true }, function (err, stdout, meta) {
+        //        //        //    console.log('%s %s', meta.cmd, meta.args.join(' '));
+        //        //        //});
+        //        //        this.createItem( data );
+        //        //    }.bind( this ), key * this.config.delayBetweenRequests )
+        //        //
+        //        //}.bind( this ) );
+        //    }
+        //
+        //}.bind(this));
 
     },
-    createItem : function ( data ) {
+    createItem: function (data) {
 
         //console.log( data );
         //'template' : 'F1D3C2D3-43DF-4A14-B282-D51367207538',
@@ -72,13 +76,13 @@ var obj = {
         //    'url' : '/-/item/v1/' + obj.config.path + '?name=' + data.name + '&template=' + obj.config.templateId,
         //});
 
-        this.post( {
-            'url' : obj.config.path,
-            'data' : {
-                'name' : data.name,
-                'template' : obj.config.templateId
+        this.post({
+            'url': obj.config.path,
+            'data': {
+                'name': data.name,
+                'template': obj.config.templateId
             }
-        } );
+        });
 
         //http://<host_name>
 
@@ -89,32 +93,32 @@ var obj = {
      * Retrieve item by id, can be any type of item ( page, media, etc...)
      * @param id
      */
-    readItem : function ( id ) {
+    readItem: function (id) {
 
-        this.request( {
-            'url' : '?sc_itemid=' + id
-        } );
-
-    },
-    updateItem : function () {
+        this.request({
+            'url': '?sc_itemid=' + id + '&'
+        });
 
     },
-    query : function ( path ) {
+    updateItem: function () {
 
-        return this.request( {
-            'url' : '?query=fast:' + path
-        } );
+    },
+    query: function (path) {
+
+        return this.request({
+            'url': '?query=fast:' + path
+        });
 
     },
 
-    post : function ( options ) {
+    post: function (options) {
 
         // Fields can be updated from field name or by field id
-        var base = encodeURI( obj.config.baseUrl + options.url ),
-            query = queryString.stringify(options.data ),
+        var base = encodeURI(obj.config.baseUrl + options.url),
+            query = queryString.stringify(options.data),
             url = 'http://' + base + '?' + query;
 
-        console.log( url );
+        console.log(url);
 
         //http.post(url, {
         //
@@ -135,6 +139,17 @@ var obj = {
             .end(function (response) {
                 console.log(response.body);
             });
+
+
+                // For media
+                //"name={0}&sc_itemid={1}&sc_database={2}&payload=content"
+                //    , HttpUtility.UrlEncode(itemName)
+                //    , HttpUtility.UrlEncode(parentId.ToString())
+                //    , HttpUtility.UrlEncode(databaseName));
+                    // and
+                // http://sitecorejunkie.com/2013/07/17/set-new-media-library-item-fields-via-the-sitecore-item-web-api/comment-page-1/#comment-12483
+                // https://sitecorejunkie.files.wordpress.com/2013/07/create-media-console-2.png
+
         //
         //var post_data = queryString.stringify( options.data );
         //
@@ -161,25 +176,25 @@ var obj = {
         //post_req.end();
 
     },
-    request : function ( options ) {
+    request: function (options) {
 
-        var url = encodeURI( obj.config.baseUrl + options.url );
+        var url = encodeURI(obj.config.baseUrl + options.url);
 
-        console.log( url );
+        console.log(url);
 
-        curl.request( {
-            url : url
-        }, function ( err, data, meta ) {
-            if ( err ) {
-                console.log( 'Error:', err );
+        curl.request({
+            url: url
+        }, function (err, data, meta) {
+            if (err) {
+                console.log('Error:', err);
                 return;
             }
 
-            var json = JSON.parse( data ).result;
+            var json = JSON.parse(data).result;
 
-            console.log( json );
+            console.log(json);
 
-        } );
+        });
     }
 };
 
