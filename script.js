@@ -16,7 +16,7 @@ var obj = {
         this.config = _.assign(config || {}, _config);
 
         // Home directory
-        this.readItem( '{110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9}' );
+        //this.readItem( '{110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9}' );
 
         // Web Template
         //this.readItem( '{AB86861A-6030-46C5-B394-E8F99E8B87DB}' );
@@ -38,14 +38,14 @@ var obj = {
         //});
 
         //// Import Manufacture Pages sheet from import/spreadsheets/site.xls
-        //this.importFromSpreadsheet('test.xls',
-        //    'Manufacture Pages',
-        //    [
-        //        "Title",
-        //        "Heading",
-        //        "Description"
-        //    ]
-        //);
+        this.importFromSpreadsheet('test.xls',
+            'Manufacture Pages',
+            [
+                "Title",
+                "Heading",
+                "Description"
+            ]
+        );
 
     },
     createItem: function (data) {
@@ -138,18 +138,6 @@ var obj = {
             console.log(data);
 
         });
-        //
-        //console.log(url);
-        //
-        //requestify.get(url, {
-        //    headers: this.config.headers
-        //}).then(function(response) {
-        //
-        //    var data = response.getBody().result;
-        //
-        //    console.log(data)
-        //
-        //});
 
     },
     importFromSpreadsheet: function(path, sheetName, fields, target) {
@@ -182,11 +170,12 @@ var obj = {
 
                         setTimeout( function () {
 
+
                             this.createItem({
                                 'name' : result[key][fields[0]],
                                 'body' : {
-                                    'Title' : result[key][fields[1]],
-                                    'ManufacturerName' : result[key][fields[1]],
+                                    'Title' : result[key][fields[0]],
+                                    'ManufacturerName' : result[key][fields[0]],
                                     'Description' : result[key][fields[2]]
                                 },
                                 'sc_item': target
