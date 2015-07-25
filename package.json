@@ -10,6 +10,7 @@
     "xls-to-json": "latest",
     "query-string" : "latest",
     "node-image-resize" : "latest",
-    "requestify" : "latest"
+    "requestify" : "latest",
+    "request" : "latest"
   }
 }
