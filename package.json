@@ -8,9 +8,6 @@
   "dependencies": {
     "lodash": "latest",
     "xls-to-json": "latest",
-    "curlrequest": "latest",
-    "http-post": "latest",
-    "unirest" : "latest",
     "query-string" : "latest",
     "node-image-resize" : "latest",
     "requestify" : "latest"
