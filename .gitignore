@@ -1,6 +1,8 @@
 .idea/*
 config/*
-output/*
+import/output/*
+import/spreadsheets/*
 
 !config/.keep
-!output/.keep
+!import/output/.keep
+!import/spreadsheets/.keep
