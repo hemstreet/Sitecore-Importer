@@ -22,41 +22,22 @@ var obj = {
         //this.query('/sitecore/Content/Hemstreet/*');
         //this.query('/sitecore/content/Home/Products/Manufacturers/0 to 9/3M');
 
-        this.createItem({
-            'name' : 'Script imported item',
-            'body' : {
-                'title' : 'Test Item',
-                'description' : 'Test importing an article'
-            }
-        });
-
-        //xj({
-        //    input: "config/site.xls",  // input xls
-        //    output: "output/site.json", // output json
-        //    sheet: "Manufacture Pages"  // specific sheetname
-        //}, function (err, result) {
-        //
-        //    if (err) {
-        //        console.error(err);
-        //    } else {
-        //
-        //        //this.createItem(result[0]);
-        //
-        //        //_.forEach( result, function ( data, key ) {
-        //        //
-        //        //    //console.log( this.config.fieldNames );
-        //        //
-        //        //    setTimeout( function () {
-        //        //        //curl.request({ url: 'http://google.com', pretend: true }, function (err, stdout, meta) {
-        //        //        //    console.log('%s %s', meta.cmd, meta.args.join(' '));
-        //        //        //});
-        //        //        this.createItem( data );
-        //        //    }.bind( this ), key * this.config.delayBetweenRequests )
-        //        //
-        //        //}.bind( this ) );
+        //this.createItem({
+        //    'name' : 'Script imported item',
+        //    'body' : {
+        //        'title' : 'Test Item',
+        //        'description' : 'Test importing an article'
         //    }
-        //
-        //}.bind(this));
+        //});
+
+        // Import Manufacture Pages sheet from config/site.xls
+        this.importFromSpreadsheet('config/site.xls',
+            'Manufacture Pages',
+            [
+                "Supplier Name",
+                "Description"
+            ]
+        );
 
     },
     createItem: function (data) {
@@ -83,9 +64,6 @@ var obj = {
         });
 
     },
-    updateItem: function () {
-
-    },
     query: function (path) {
 
         return this.request({
@@ -99,11 +77,11 @@ var obj = {
         requestify.request(options.url, {
             method: 'POST',
             headers: this.config.headers,
-            body: options.body,
+            body: options.body
         }).then(function(response) {
 
             console.log(response);
-            var data = response.getBody().result;
+            var data = response.getBody();
 
             console.log(data);
 
@@ -123,10 +101,62 @@ var obj = {
             console.log(data)
 
         });
-    },
-    createFolder: function() {
 
-    }
+    },
+    importFromSpreadsheet: function(path, sheetName, fields, target) {
+
+        var pieces = path.split('/'),
+            fileName   = pieces[pieces.length - 1],
+            name = fileName.split('.')[0],
+            extension = fileName.split('.')[1],
+            target = target || this.config.sc_itemid,
+            config = {
+                input: path,
+                output: this.config.outputPath + "/" + name + '.json'
+            };
+
+        if(sheetName) {
+            config.sheet = sheetName;
+        }
+
+        xj(config,
+            function (err, result) {
+
+                if (err) {
+                    console.error(err);
+                } else {
+
+                    _.forEach( result, function ( data, key ) {
+
+                        setTimeout( function () {
+
+                            this.createItem({
+                                'name' : result[key][fields[0]],
+                                'body' : {
+                                    'title' : result[key][fields[0]],
+                                    'description' : result[key][fields[1]]
+                                },
+                                'sc_item': target
+                            });
+
+                        }.bind( this ), key * this.config.delayBetweenRequests )
+
+                    }.bind( this ) );
+                }
+
+            }.bind(this));
+    },
+    // findById(id)
+    // findByName(name)
+    // updateById(id)
+    // updateByName(name)
+    // getTemplateByKey(key)
+    // getTemplateByName(name)
+    // alphabetizeByField(field, array)
+    // getFieldKeyByName(name, template)
+    // createFolder(name)
+        // deleteById(id)
+        // deleteByName(name)
 };
 
 obj.init();
