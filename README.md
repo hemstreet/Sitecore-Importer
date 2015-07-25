@@ -5,55 +5,41 @@ How to run
 
 To start the script run: `node script.js`
 
-Setup
-==
-* [http://devdocs.io/lodash/](http://devdocs.io/lodash/) 
-* [https://lodash.com/docs](https://lodash.com/docs)
-* [https://sdn.sitecore.net/upload/sdn5/modules/sitecore%20item%20web%20api/sitecore_item_web_api_developer_guide_sc65-66-usletter.pdf](https://sdn.sitecore.net/upload/sdn5/modules/sitecore%20item%20web%20api/sitecore_item_web_api_developer_guide_sc65-66-usletter.pdf)
-
-Upload media, get id and filepath.
-
-Inserting Images into articles
-====
-
-```
-<img height="1667" alt="Image Title" width="2500" src="~/media/{123-345-6789-101112}.ashx" />
-```
-
-Inserting Main images into articles
-====
-
-insert file path into main image field
-```
-/Images/Social/Connector/Facebook
-```
-
+Examples
 ===
 ```
-/{image name}
+    // Home directory
+    sitecore.readItem( '{110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9}' );
+
+    // Web Template
+    sitecore.readItem( '{AB86861A-6030-46C5-B394-E8F99E8B87DB}' );
+
+    // Manufacture Template
+    sitecore.readItem( '{2987BF93-3CC5-4D01-91E7-2CD5B9553673}', {
+        payload: 'full'
+    });
+
+    sitecore.query('/sitecore/Content/Hemstreet/*');
+    sitecore.query('/sitecore/content/Home/Products/Manufacturers/0 to 9/3M');
+
+    sitecore.createItem({
+        'name' : 'Script imported item',
+        'body' : {
+            'title' : 'Test Item',
+            'description' : 'Test importing an article'
+        }
+    });
+
+    // Import Manufacture Pages sheet from lib/import/spreadsheets/site.xls
+    sitecore.importFromSpreadsheet('test.xls',
+        'Manufacture Pages',
+        [
+            "Title",
+            "Heading",
+            "Description"
+        ]
+    );
 ```
-
-Reading items by id
-===
-```
-this.readItem('{123-345-6789-101112}');
-```
-
-Query support
-===
-
-```
-this.query('/sitecore/content/*');
-```
-
-Run tests
-===
-Install mocha
-`npm install -g mocha`
-
-run tests
-`mocha`
-
 
 Story
 ===
@@ -72,40 +58,3 @@ Updating Content ( v2 )
     * match title of article to post
     * Use that matched Id to get fields
     * swap out content with new content
-
-
-Examples
-===
-```
-    // Home directory
-    this.readItem( '{110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9}' );
-
-    // Web Template
-    this.readItem( '{AB86861A-6030-46C5-B394-E8F99E8B87DB}' );
-
-    // Manufacture Template
-    this.readItem( '{2987BF93-3CC5-4D01-91E7-2CD5B9553673}', {
-        payload: 'full'
-    });
-
-    this.query('/sitecore/Content/Hemstreet/*');
-    this.query('/sitecore/content/Home/Products/Manufacturers/0 to 9/3M');
-
-    this.createItem({
-        'name' : 'Script imported item',
-        'body' : {
-            'title' : 'Test Item',
-            'description' : 'Test importing an article'
-        }
-    });
-
-    // Import Manufacture Pages sheet from import/spreadsheets/site.xls
-    this.importFromSpreadsheet('test.xls',
-        'Manufacture Pages',
-        [
-            "Title",
-            "Heading",
-            "Description"
-        ]
-    );
-```
