@@ -1,4 +1,6 @@
-var sitecore = require('./lib/sitecore.js');
+var Sitecore = require('./lib/sitecore.js');
+
+var qa = new Sitecore();
 
 // Home directory
 //sitecore.readItem( '{110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9}' );
@@ -14,7 +16,7 @@ var sitecore = require('./lib/sitecore.js');
 //sitecore.query('/sitecore/Content/Hemstreet/*');
 //sitecore.query('/sitecore/content/Home/Products/Manufacturers/0 to 9/3M');
 
-sitecore.queryByName('/sitecore/Content/Hemstreet/*', 'Test title');
+//qa.queryByName('/sitecore/Content/Hemstreet/*', 'Test title');
 
 //this.createItem({
 //    'name' : 'Script imported item',
