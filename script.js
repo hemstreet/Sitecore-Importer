@@ -22,17 +22,17 @@ var sitecore = require('./lib/sitecore.js');
 //    }
 //});
 
-//// Import Manufacture Pages sheet from import/spreadsheets/site.xls
-//sitecore.importFromSpreadsheet('test.xls',
-//    'Manufacture Pages',
-//    [
-//        "Title",
-//        "Heading",
-//        "Description"
-//    ]
-//);
+// Import Manufacture Pages sheet from import/spreadsheets/site.xls
+sitecore.importFromSpreadsheet('test.xls',
+    'Manufacture Pages',
+    [
+        "Title",
+        "Heading",
+        "Description"
+    ]
+);
 
-sitecore.updateItemById('{5B075E7C-7430-49B2-8DFC-9A55A93CBBED}', {
-    'ManufacturerName': 'Dummy Name',
-    'PageDescription': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. An eum discere ea mavis, quae cum plane perdidiceriti nihil sciat? Iubet igitur nos Pythius Apollo noscere nosmet ipsos. Suam denique cuique naturam esse ad vivendum ducem. Istam voluptatem perpetuam quis potest praestare sapienti? Idem adhuc; Id Sextilius factum negabat.'
-});
+//sitecore.updateItemById('{5B075E7C-7430-49B2-8DFC-9A55A93CBBED}', {
+//    'ManufacturerName': 'Dummy Name',
+//    'PageDescription': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. An eum discere ea mavis, quae cum plane perdidiceriti nihil sciat? Iubet igitur nos Pythius Apollo noscere nosmet ipsos. Suam denique cuique naturam esse ad vivendum ducem. Istam voluptatem perpetuam quis potest praestare sapienti? Idem adhuc; Id Sextilius factum negabat.'
+//});

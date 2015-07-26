@@ -1,7 +1,7 @@
 .idea/*
 lib/config/*
-lib/import/output/*
-lib/import/spreadsheets/*
+import/output/*
+import/spreadsheets/*
 
 !config/.keep
 !import/output/.keep
