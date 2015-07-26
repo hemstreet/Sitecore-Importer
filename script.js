@@ -12,7 +12,9 @@ var sitecore = require('./lib/sitecore.js');
 //});
 
 //sitecore.query('/sitecore/Content/Hemstreet/*');
-//this.query('/sitecore/content/Home/Products/Manufacturers/0 to 9/3M');
+//sitecore.query('/sitecore/content/Home/Products/Manufacturers/0 to 9/3M');
+
+sitecore.queryByName('/sitecore/Content/Hemstreet/*', 'Test title');
 
 //this.createItem({
 //    'name' : 'Script imported item',
@@ -23,14 +25,14 @@ var sitecore = require('./lib/sitecore.js');
 //});
 
 // Import Manufacture Pages sheet from import/spreadsheets/site.xls
-sitecore.importFromSpreadsheet('test.xls',
-    'Manufacture Pages',
-    [
-        "Title",
-        "Heading",
-        "Description"
-    ]
-);
+//sitecore.importFromSpreadsheet('test.xls',
+//    'Manufacture Pages',
+//    [
+//        "Title",
+//        "Heading",
+//        "Description"
+//    ]
+//);
 
 //sitecore.updateItemById('{5B075E7C-7430-49B2-8DFC-9A55A93CBBED}', {
 //    'ManufacturerName': 'Dummy Name',
