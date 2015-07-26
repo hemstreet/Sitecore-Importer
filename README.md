@@ -27,8 +27,8 @@ Examples
     });
 
     sitecore.updateItemById('{5B075E7C-7430-49B2-8DFC-9A55A93CBBED}', {
-        'DisplayName:': 'Updated Manufacture Name',
-        'ManufacturerName': 'testing update sdflkjdsflkj'
+        'ManufacturerName': 'Dummy Name',
+        'PageDescription': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. An eum discere ea mavis, quae cum plane perdidiceriti nihil sciat? Iubet igitur nos Pythius Apollo noscere nosmet ipsos. Suam denique cuique naturam esse ad vivendum ducem. Istam voluptatem perpetuam quis potest praestare sapienti? Idem adhuc; Id Sextilius factum negabat.'
     });
     
     // Import Manufacture Pages sheet from lib/import/spreadsheets/site.xls
