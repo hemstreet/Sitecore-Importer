@@ -1,9 +1,9 @@
 var Sitecore = require('./lib/sitecore.js');
 
-var qa = new Sitecore();
+var sitecore = new Sitecore();
 
 // Home directory
-qa.readItem( '{110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9}' );
+sitecore.readItem( '{110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9}' );
 
 // Web Template
 //sitecore.readItem( '{AB86861A-6030-46C5-B394-E8F99E8B87DB}' );
@@ -16,7 +16,7 @@ qa.readItem( '{110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9}' );
 //sitecore.query('/sitecore/Content/Hemstreet/*');
 //sitecore.query('/sitecore/content/Home/Products/Manufacturers/0 to 9/3M');
 
-//qa.queryByName('/sitecore/Content/Hemstreet/*', 'Test title');
+//sitecore.queryByName('/sitecore/Content/Hemstreet/*', 'Test title');
 
 //this.createItem({
 //    'name' : 'Script imported item',
