@@ -3,7 +3,7 @@ var Sitecore = require('./lib/sitecore.js');
 var qa = new Sitecore();
 
 // Home directory
-//sitecore.readItem( '{110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9}' );
+qa.readItem( '{110D559F-DEA5-42EA-9C1C-8A5DF7E70EF9}' );
 
 // Web Template
 //sitecore.readItem( '{AB86861A-6030-46C5-B394-E8F99E8B87DB}' );
