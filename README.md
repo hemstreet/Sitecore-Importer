@@ -1,9 +1,26 @@
 ***Sitecore importer is a work in progress***
 
-How to run
+Setup
 ===
 
 To start the script run: `node script.js`
+
+`config/config.json`
+```
+{
+  "baseUrl": "my-sitecore-site.com/-/item/v1/",
+  "templatePath": "sitecore/templates/sample/Sample Item",
+  "templateId": "{1111111-1111111-1111-1111-111111111}",
+  "database": "master",
+  "path": "sitecore/content/home",
+  "delayBetweenRequests": 250,
+  "headers": {
+    "Content-Type": "application/x-www-form-urlencoded",
+    "X-Scitemwebapi-Username": "extranet\\webapi",
+    "X-Scitemwebapi-Password": "secretPassword"
+  }
+}
+```
 
 Examples
 ===

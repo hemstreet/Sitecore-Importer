@@ -1,5 +1,5 @@
 .idea/*
-lib/config/*
+config/*
 import/output/*
 import/spreadsheets/*
 
