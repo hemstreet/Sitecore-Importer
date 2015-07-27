@@ -23,14 +23,14 @@ var sitecore = require('./lib/sitecore.js');
 //});
 
 // Import Manufacture Pages sheet from import/spreadsheets/site.xls
-sitecore.importFromSpreadsheet('test.xls',
-    'Manufacture Pages',
-    [
-        "Title",
-        "Heading",
-        "Description"
-    ]
-);
+//sitecore.importFromSpreadsheet('test.xls',
+//    'Manufacture Pages',
+//    [
+//        "Title",
+//        "Heading",
+//        "Description"
+//    ]
+//);
 
 //sitecore.updateItemById('{5B075E7C-7430-49B2-8DFC-9A55A93CBBED}', {
 //    'ManufacturerName': 'Dummy Name',
