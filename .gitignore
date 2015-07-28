@@ -2,7 +2,9 @@
 config/*
 import/output/*
 import/spreadsheets/*
+import/media/*
 
 !config/.keep
 !import/output/.keep
+!import/media/.keep
 !import/spreadsheets/.keep
