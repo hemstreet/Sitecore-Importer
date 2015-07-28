@@ -5,7 +5,7 @@ var sitecore = new Sitecore();
 // CREATE
 
     sitecore.createMedia({
-        path: 'import/media/',
+        path: '/',
         target: '{E231A592-82B6-4CDA-8DF3-1E64EE1A58CB}'
     }, function(files) {
         console.log('files', files);

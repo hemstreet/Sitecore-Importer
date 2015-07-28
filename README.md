@@ -11,6 +11,8 @@ To start the script run: `node script.js`
   "baseUrl": "my-sitecore-site.com/-/item/v1/",
   "templatePath": "sitecore/templates/sample/Sample Item",
   "templateId": "{1111111-1111111-1111-1111-111111111}",
+  "sc_itemid": "{1111111-1111111-1111-1111-111111111}",
+  "baseMediaPath": "{1111111-1111111-1111-1111-111111111}",
   "database": "master",
   "path": "sitecore/content/home",
   "delayBetweenRequests": 250,
@@ -18,7 +20,10 @@ To start the script run: `node script.js`
     "Content-Type": "application/x-www-form-urlencoded",
     "X-Scitemwebapi-Username": "extranet\\webapi",
     "X-Scitemwebapi-Password": "secretPassword"
-  }
+  },
+  "outputPath" : "import/output",
+  "spreadsheetPath" : "import/spreadsheets",
+  "mediaPath" : "import/media"
 }
 ```
 
