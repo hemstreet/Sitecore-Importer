@@ -3,6 +3,8 @@
 Setup
 ===
 
+*If items are not showing make sure they are published*
+
 To start the script run: `node script.js`
 
 `config/config.json`
@@ -12,7 +14,8 @@ To start the script run: `node script.js`
   "templatePath": "sitecore/templates/sample/Sample Item",
   "templateId": "{1111111-1111111-1111-1111-111111111}",
   "sc_itemid": "{1111111-1111111-1111-1111-111111111}",
-  "baseMediaPath": "{1111111-1111111-1111-1111-111111111}",
+  "baseMediaId": "{1111111-1111111-1111-1111-111111111}",
+  "baseMediaPath": "/sitecore/media library",
   "database": "master",
   "path": "sitecore/content/home",
   "delayBetweenRequests": 250,
