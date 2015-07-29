@@ -13,6 +13,8 @@
     "requestify" : "latest",
     "request" : "latest",
     "glob" : "latest",
-    "form-data": "latest"
+    "form-data": "latest",
+    "q" : "latest",
+    "multiparty" : "latest"
   }
 }

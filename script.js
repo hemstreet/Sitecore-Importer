@@ -1,15 +1,17 @@
-var Sitecore = require('./lib/sitecore.js');
+var Sitecore = require('./lib/sitecore.js'),
+    _ = require('lodash');
 
 var sitecore = new Sitecore();
 
 // CREATE
 
-    sitecore.createMedia({
-        path: '/',
-        target: '{E231A592-82B6-4CDA-8DF3-1E64EE1A58CB}'
-    }, function(files) {
-        console.log('files', files);
-    });
+    //sitecore.createMedia({
+    //    path: 'cat.jpg',
+    //    target: '{E231A592-82B6-4CDA-8DF3-1E64EE1A58CB}'
+    //}, function(data) {
+    //    console.log('file data', data);
+    //});
+
     //
     //this.createItem({
     //'name' : 'Script imported item',
@@ -28,6 +30,14 @@ var sitecore = new Sitecore();
     //        "Description"
     //    ]
     //);
+
+//Import Manufacture Pages sheet from import/spreadsheets/site.xls
+sitecore.importFromSpreadsheetWithMedia('mediaTest.xls', 'Manufacture Pages',
+    [
+        "Title",
+        "Heading",
+        "Description"
+    ]);
 
 // READ
 
