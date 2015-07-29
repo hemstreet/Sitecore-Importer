@@ -21,23 +21,23 @@ var sitecore = new Sitecore();
     //}
     //});
     //
-    ////Import Manufacture Pages sheet from import/spreadsheets/site.xls
-    //sitecore.importFromSpreadsheet('test.xls',
-    //    'Manufacture Pages',
-    //    [
-    //        "Title",
-    //        "Heading",
-    //        "Description"
-    //    ]
-    //);
+    //Import Manufacture Pages sheet from import/spreadsheets/site.xls
+    sitecore.importFromSpreadsheet('test.xls',
+        'Manufacture Pages',
+        [
+            "Title",
+            "Heading",
+            "Description"
+        ]
+    );
 
 //Import Manufacture Pages sheet from import/spreadsheets/site.xls
-sitecore.importFromSpreadsheetWithMedia('mediaTest.xls', 'Manufacture Pages',
-    [
-        "Title",
-        "Heading",
-        "Description"
-    ]);
+//sitecore.importFromSpreadsheetWithMedia('mediaTest.xls', 'Manufacture Pages',
+//    [
+//        "Title",
+//        "Heading",
+//        "Description"
+//    ]);
 
 // READ
 
